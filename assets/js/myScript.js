@@ -56,8 +56,10 @@ for (var i = 0; i < 9; i++) {
                 saveBtn[2] = $('<button>');
                 saveBtn[2].attr('id','button');
                 saveBtn[2].addClass('saveBtn btn btn-info');
-                btnImage[2]= $('<img>');
-                btnImage[2].attr("src","../images/floppy.jpg");
+                btnImage[2]= $('<i>');
+                btnImage[2].addClass("fa-solid fa-thin fa-calendar-check");
+                // btnImage[2]= $('<img>');
+                // btnImage[2].attr("src","/images/floppy.jpg");
                 saveBtn[2].append(btnImage[2]);
                 divCol[2].append(saveBtn[2]);
                 divCol[2].css('padding-top','20px');
