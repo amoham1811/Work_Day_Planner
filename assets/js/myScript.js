@@ -10,12 +10,12 @@ var divCol = [];
 var timeLabel = '';
 var saveBtn = [];
 var btnImage = [];
-var Planner = []
+var Planner = [];
 
 //initialise planner
-for(var i=0;i<9;i++){
-    Planner[i]=' ';
-}
+// for(var i=0;i<9;i++){
+//     Planner[i]=' ';
+// }
 for (var i = 0; i < 9; i++) {
     
     divRow[i] = $('<div>');
@@ -54,6 +54,7 @@ for (var i = 0; i < 9; i++) {
                 divCol[2].addClass('col saveBtn');
                 //divCol[2].text('Btn');
                 saveBtn[2] = $('<button>');
+                saveBtn[2].attr('id','button');
                 saveBtn[2].addClass('saveBtn btn btn-info');
                 btnImage[2]= $('<img>');
                 btnImage[2].attr("src","../images/floppy.jpg");
@@ -73,5 +74,50 @@ for (var i = 0; i < 9; i++) {
 //delegated click event listner
 containerEl.on('click', '.saveBtn', function (event) {
     event.preventDefault();
-    alert('Hello, The click is working');
+       
+    //capture the time label for the clicked row and read in the currently store values
+    var timeValue = event.target.parentElement.parentElement.previousSibling.previousSibling.firstChild.textContent.trim();
+    var planValue = event.target.parentElement.parentElement.previousSibling.firstChild.value.trim();
+        
+    //Load previous stored values if exist
+    var prevStorage = localStorage.getItem("Planner");
+    if (prevStorage != null){
+        Planner = JSON.parse(prevStorage);
+    }
+    
+    //update planner with new entry
+    switch(timeValue) {
+        case '9 AM':
+            Planner[0]=timeValue+" : "+ planValue;
+            break;
+        case '10 AM':
+            Planner[1]=timeValue+" : "+planValue;
+            break;
+        case '11 AM':
+            Planner[2]=timeValue+" : "+planValue;
+            break;
+        case '12 PM':
+            Planner[3]=timeValue+" : "+planValue;
+            break;
+        case '1 PM':
+            Planner[4]=timeValue+" : "+planValue;
+                break;
+        case '2 PM':
+            Planner[5]=timeValue+" : "+planValue;
+            break;
+        case '3 PM':
+            Planner[6]=timeValue+" : "+planValue;
+            break;
+        case '4 PM':
+            Planner[7]=timeValue+" : "+planValue;
+            break;
+        case '5 PM':
+            Planner[8]=timeValue+" : "+planValue;
+            break;
+        default:
+            // Do nothing
+        }
+           
+       // store updated planner
+       localStorage.setItem("Planner", JSON.stringify(Planner));
 });    
